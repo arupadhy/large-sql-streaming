@@ -22,7 +22,7 @@ async function *fastSource(delay) {
 
 async function delayedCall(data) {
     const randomDelay = delayTime[Math.floor(Math.random() * delayTime.length)];
-    await wait(1);
+    await wait(randomDelay);
     console.log(`I am slow consumer and waited for ${randomDelay} msec for ${JSON.stringify(data)}`);
     return data;
 }
