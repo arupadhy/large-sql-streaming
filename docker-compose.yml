@@ -1,0 +1,34 @@
+version: "3"
+services:
+  sql-stream-simulation:
+    build: .
+    ports:
+      - 5000:5000
+    networks: 
+      - streaming_network  
+    volumes:
+      - .:/code
+    command: pm2 start index.js --no-daemon  
+    depends_on: 
+      - mysql
+    environment: 
+      - HOST=mysql
+      - PORT=3306
+      - USER=root
+      - PASSWORD=password
+
+  mysql:
+    image: "mysql:5.6"
+    restart: always
+    networks: 
+      - streaming_network
+    ports:
+      - 3306:3306
+    volumes:
+    - ./scripts/:/docker-entrypoint-initdb.d/:rw  
+    environment: 
+      - MYSQL_ROOT_PASSWORD=password  
+      
+networks: 
+  streaming_network:
+    driver: bridge
