@@ -1,7 +1,7 @@
-CREATE TABLE test.users
-(
-`id` BIG INTEGER AUTO_INCREMENT,
+USE test;
+CREATE TABLE users (
+`id` BIGINT AUTO_INCREMENT,
 `name` TEXT,
-`age` INTEGER,
+`age` INT,
 PRIMARY KEY (`id`)
-) COMMENT='this is my test table';
+);
