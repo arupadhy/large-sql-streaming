@@ -75,10 +75,16 @@ async function simulateLargeDataStream() {
     const { pool, poolWithDb } = getDbPool();
     const testSetup = new TestSetup(pool, poolWithDb);
     
+    // this cleans up data from mysql table
     // await testSetup.cleanup();
+
+   // this setups data in the mysql table that would be queried
     await testSetup.setup();
+  
+   // this will stream the data with some artificial delay
     await streamLargeData();
 }
 
-simulateLargeDataStream();
+// this while running on the container
+ simulateLargeDataStream();
 
